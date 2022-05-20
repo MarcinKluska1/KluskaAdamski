@@ -44,12 +44,6 @@ swagger_config = {
 swagger = Swagger(app, template=swagger_template,
                   config=swagger_config)
 
-@swag_from("hello_world.yml", methods=['GET'])
-@app.route("/main")
-def hello_world():
-    return "Hello World!!!"
-
-
 @api.route('/upload/')
 @api.expect(upload_parser)
 class UploadPicture(Resource):
