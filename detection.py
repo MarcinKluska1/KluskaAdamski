@@ -41,7 +41,7 @@ def video_detection(path, filename):
     input_size = 416
     video_path = path
 
-    saved_model_loaded = tf.saved_model.load('./checkpoints/yolov4-416',
+    saved_model_loaded = tf.saved_model.load('./checkpoints/yolov4-tiny-416',
                                              tags=[tag_constants.SERVING])
     infer = saved_model_loaded.signatures['serving_default']
 
@@ -129,8 +129,8 @@ def video_detection(path, filename):
         count = len(names)
 
         cv2.putText(frame, "Objects being tracked: {}".format(count),
-                    (5, 35), cv2.FONT_HERSHEY_COMPLEX_SMALL, 2,
-                    (0, 255, 0), 2)
+                    (5, 35), cv2.FONT_HERSHEY_COMPLEX_SMALL, 1,
+                    (0, 255, 0), 1)
 
         # delete detections that are not in allowed_classes
         bboxes = np.delete(bboxes, deleted_indx, axis=0)
@@ -175,8 +175,8 @@ def video_detection(path, filename):
                         len(class_name) + len(str(track.track_id))) * 17,
                 int(bbox[1])), color, -1)
             cv2.putText(frame, class_name + "-" + str(track.track_id),
-                        (int(bbox[0]), int(bbox[1] - 10)), 0, 0.75,
-                        (255, 255, 255), 2)
+                        (int(bbox[0]), int(bbox[1] - 10)), 0, 0.5,
+                        (255, 255, 255), 1)
 
             coordinates.append(
                 [frame_num, str(track.track_id), (bbox[0] + bbox[2]) / 2,
