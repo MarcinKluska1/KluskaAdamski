@@ -26,7 +26,6 @@ RUN  apt-get  install  \
  x11-apps \
  wget \
  vim \
- ffmpeg \
  unzip \
  libcanberra-gtk-module \
  && rm -rf /var/lib/apt/lists/*
